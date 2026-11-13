@@ -1,8 +1,8 @@
 {
-  "name": "AURUM FIVEX PRO \u2014 Royal Gold Elite",
+  "name": "AURUM FIVEX PRO | Royal Gold Elite",
   "short_name": "AURUM FIVEX PRO",
   "description": "AURUM FIVEX PRO XAUUSD signal dashboard",
-  "start_url": "./index.html",
+  "start_url": "./?app=v5",
   "scope": "./",
   "display": "standalone",
   "background_color": "#090806",
@@ -20,5 +20,6 @@
       "type": "image/png",
       "purpose": "any"
     }
-  ]
+  ],
+  "id": "./"
 }

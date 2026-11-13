@@ -1,21 +1,26 @@
-# AURUM FIVEX PRO — Royal Gold Elite V3
+# AURUM FIVEX PRO — Royal Gold Elite FINAL V5
 
-Premium visual redesign of Obsidian Gold V2. Keeps the original `app.js`, TradingView Chart widget, Dashboard, Signals, History, Settings, local preferences, and optional public signal API integration.
+## Isi pakej
+- `index.html`, `app.js`, `sw.js`, `manifest.webmanifest`: PWA dengan Dashboard, Chart, Signals, History, Settings.
+- `aurum-fivex-logo-original.png`: **logo asal yang dibekalkan**, tanpa reka semula.
+- `icon-192.png`, `icon-512.png`, `apple-touch-icon.png`: ikon aplikasi daripada logo asal.
+- `wrangler.jsonc`: Cloudflare Workers Static Assets; **nama Worker lama dikekalkan** supaya URL tidak berubah.
+- `backend/worker.js`: contoh backend berasingan, **bukan** webhook aktif.
 
-## Update existing Cloudflare Workers deployment
+## Kemas kini GitHub dan Cloudflare
+1. Buat backup repository GitHub sedia ada.
+2. Upload **kandungan di dalam ZIP**, bukan ZIP itu sendiri, ke root repository GitHub `dindnnmarkt/aurum-fivex-master-live` pada branch `main`.
+3. Gantikan fail bernama sama. Pastikan `index.html`, `app.js`, `sw.js`, `wrangler.jsonc` berada di root. Fail lama yang tidak ditindih boleh kekal, tetapi tidak digunakan.
+4. Commit, kemudian semak status **Ready** untuk commit terbaru dalam Cloudflare Workers.
+5. Uji `https://aurum-fivex-master-live.dindnnmarkt.workers.dev/?app=v5`. Jika paparan lama masih keluar, buka Incognito dan semak commit Cloudflare, kemudian clear site data/service worker bagi laman itu.
+6. Untuk iPhone: Safari > Share > Add to Home Screen selepas versi baru disahkan.
 
-1. Back up the current GitHub repository.
-2. Upload **all files from the ZIP root** to the `main` branch of `dindnnmarkt/aurum-fivex-master-live`, replacing matching files. `index.html` is the redesigned UI. `app.js` and `sw.js` are preserved from V2. `wrangler.jsonc` configures static assets.
-3. If your existing repository contains additional production configuration, compare before overwriting.
-4. Check Cloudflare Workers & Pages > Deployments for Ready.
-5. Open the workers.dev URL, hard refresh, and test all five tabs. On iPhone, close and reopen the installed Home Screen app. Service worker caches can require reload.
+## Semakan fungsi
+- Dashboard: demo harga/candlestick dan pilihan mode.
+- Chart: TradingView Advanced Chart widget `OANDA:XAUUSD`, pilihan M5/M15/H1/H4. Memerlukan internet dan servis TradingView.
+- Signals: rekod demo dengan entry, SL, TP1–TP5.
+- History: penapis ALL/BUY/SELL.
+- Settings: tetapan disimpan dalam localStorage; API URL pilihan untuk backend yang serasi.
 
-## What is real and what is not
-
-- TradingView Chart is a real embedded external widget (internet required).
-- Dashboard illustration, sample market price, signals, history and performance are DEMO until a compatible backend API is configured.
-- This redesign does not enable live webhook, real iOS push, authentication, or order execution.
-- Never put webhook secrets into client-side Settings.
-
-
-V4: Official supplied logo in header and PWA icons; branding AURUM FIVEX PRO. Keep existing Cloudflare deployment and wrangler.jsonc.
+## Had penting
+Carta TradingView adalah widget pasaran sebenar, **bukan** indikator Pine Script peribadi. Harga Dashboard, statistik, signal dan history masih **DEMO** sehingga API backend yang sebenar dihubungkan. Webhook, push notification sebenar, login dan trading automatik belum aktif. Jangan letak token rahsia dalam kod frontend.
